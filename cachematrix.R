@@ -3,11 +3,12 @@
 ## than compute it repeatedly. The functions below wil cache the 
 ## inverse of a matrix.
 
-## The 'makeCacheMatrix' creates a function that gives us the tools
+## The 'makeCacheMatrix' creates a set of functions that gives us the tools
 ## to cache a matrix by adding the functions of set, get, setinverse,
 ## and getinverse to the matrix. These functions will be used by the 
 ## cacheSolve function to determine if there is a version of called
-## matrix, 'newGlobalMatrix', in cache.
+## matrix, 'newGlobalMatrix', in cache. This is made works because of lexical
+## scoping.
 
 makeCacheMatrix <- function(newMatrix = matrix()) {
 
@@ -25,7 +26,9 @@ makeCacheMatrix <- function(newMatrix = matrix()) {
      
 }
 
-## Write a short comment describing this function
+## The cacheSolve function looks in memory, using the getinverse function to
+## if we have cached a result of the inverse of the passed 'matrix' in memory. 
+## If we have not then we calculate the inverse and store the result in memory.
 
 cacheSolve <- function(matrix, ...) {
 
